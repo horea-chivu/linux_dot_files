@@ -48,7 +48,7 @@ sudo -v && wget -nv -O- https://raw.githubusercontent.com/kovidgoyal/calibre/mas
 
 #Programming Tools
 sudo apt-get -y install sublime-text-installer
-sudo apt-get -y install vim
+sudo apt-get -y install vim emacs
 sudo apt-get -y install git
 sudo apt-get -y install oracle-java8-installer
 sudo echo "PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$\n--> '" >> ~/.bashrc
