@@ -41,6 +41,11 @@
 ;; Spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+(setq backup-directory-alist
+      `((".*" . "~/.saves")))
+(setq auto-save-file-name-transforms
+      `((".*" "~/.saves" t)))
+
 ;; ample-theme
 
 ;; then in your init you can load all of the themes
