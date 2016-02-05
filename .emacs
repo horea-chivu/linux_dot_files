@@ -41,10 +41,14 @@
 ;; Spaces instead of tabs
 (setq-default indent-tabs-mode nil)
 
+;; Auto-save and backup files destination dir
 (setq backup-directory-alist
       `((".*" . "~/.saves")))
 (setq auto-save-file-name-transforms
       `((".*" "~/.saves" t)))
+
+;; Show the lines number
+(global-linum-mode t)
 
 ;; ample-theme
 

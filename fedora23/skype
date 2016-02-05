@@ -1,5 +1,0 @@
-#!/bin/sh
-export SKYPE_HOME="/opt/skype"
- 
-$SKYPE_HOME/skype --resources=$SKYPE_HOME $*
-
