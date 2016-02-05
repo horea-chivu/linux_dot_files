@@ -50,7 +50,7 @@
 ;; Show the lines number
 (global-linum-mode t)
 
-;; ample-theme
+;; Theme settings
 
 ;; then in your init you can load all of the themes
 ;; without enabling theme (or just load one)
