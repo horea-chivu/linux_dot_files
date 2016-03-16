@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo rm -r ~/.vim/colors
-cd ../
+cd Vim
 cp -Ri colors ~/.vim
 cp -i .vimrc ~/.vim
-cd scripts/
+cd ..
 vim +PluginInstall! +qall
