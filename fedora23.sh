@@ -14,5 +14,5 @@ sudo dnf install -y nodejs
 
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
-$ sudo mv composer.phar /usr/local/bin/composer
+sudo mv composer.phar /usr/local/bin/composer
 # $ sudo /usr/local/bin/composer --self-update
