@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Prerequisites
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get -y dist-upgrade
+sudo apt-get install build-essential 
+sudo apt-get -y install curl git vim emacs vlc qbittorrent nautilus-dropbox mysql-workbench-data
+
+# LAMP Stack + Composer
+sudo apt-get -y install apache2 mysql-server mysql-client php7.0-mysql php7.0-curl php7.0-json php7.0-cgi  php7.0 php-xdebug phpmyadmin
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
+#Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
+
+# Skype
+wget http://download.skype.com/linux/skype-ubuntu-precise_4.3.0.37-1_i386.deb
+sudo dpkg -i skype*
+
+# Node.js
+curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Haskell's ghc and cabal
+
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository -y ppa:hvr/ghc
+sudo apt-get update
+sudo apt-get install -y cabal-install-1.22 ghc-7.10.3
+cat >> ~/.bashrc <<EOF
+export PATH="\$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:\$PATH"
+EOF
+export PATH=~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH
+
+# Final dependencies resolve
+sudo apt-get -y -f install
