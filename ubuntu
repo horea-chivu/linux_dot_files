@@ -41,3 +41,5 @@ export PATH=~/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH
 
 # Final dependencies resolve
 sudo apt-get -y -f install
+
+rm skype-* google-chrome-stable_current_amd64.deb 
