@@ -4,7 +4,10 @@
  '(menu-bar-mode nil)
  '(tool-bar-mode nil))
 (custom-set-faces
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 154 :width normal :foundry "PfEd" :family "DejaVu Sans Mono")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 130 :width normal :foundry "PfEd" :family "DejaVu Sans Mono")))))
+
+;; Remove scroll bar
+(scroll-bar-mode -1)
 
 ;; Indent Settings
 (setq c-default-style "linux"
