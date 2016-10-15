@@ -1,40 +1,85 @@
-" Horea Chivu's VIM configuration file(.vimrc)
+" Vim Configuration
 
-""""""""""""""""""""""""""
-    " General Settings
-""""""""""""""""""""""""""
+let mapleader=","			" Set leader key to ,
+set nocompatible              		" be iMproved, required
+set wildmenu 
 
-   " Basic apperance 
-   
-" Show line number
-set number
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf-8
 
-syntax enable
+" Disable backup file( We have GIT POWER ) 
+set nobackup
+set noswapfile
 
-filetype plugin indent on 
-syntax on
+set autowriteall                        "Automatically write the file when switching buffers.
+set complete=.,w,b,u 			"Set our desired autocompletion matching.
+set tabstop=8
+set expandtab
+set softtabstop=4
+set shiftwidth=4
 
-" Hide GVIM gui
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-" set guioptions-=M  "Extreme removal
+set autowriteall                        "Automatically write the file when switching buffers.
+set complete=.,w,b,u 			"Set our desired autocompletion matching.
+
+"-----------Visuals------------"
 
 " GUI or not-GUI
-if has('gui_running') 
+if has("gui_running") 
     " GUI colors 
-	colorscheme mustang
+    colorscheme atom-dark
 else 
     " Non-GUI (terminal) colors 
     colorscheme jellybeans
 endif
 
-set guifont=Monospace\ 14 
+set guifont=Fira\ Mono\ 12		" Font and size
+set linespace=5			        " Space between lines
+" set t_CO=256				" Force 256 colors	--not sure	
+syntax enable				
 
-    " Key remaps
+set number                              " Show current line number
+set relativenumber                      " Show relative line numbers
 
-" Use jj instead of ESC 
+" Set line number bg to general background
+hi LineNr guibg=bg			
+
+" Text area padding
+if has("gui_running")
+	set foldcolumn=2
+endif
+hi foldcolumn guibg=bg
+
+" Split separator color customize
+hi vertsplit guifg=bg guibg=black
+
+" Remove all scroll bars, menus and gui tabs
+
+set guioptions-=T                       "Remove toolbar
+set guioptions-=l                       "Disable Gui scrollbars.
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+set guioptions-=e			"We don't want Gui tabs.
+
+
+"-----------Mappings------------"
+
+" Shortcut for .vimrc file
+nmap <Leader>ev :tabedit $MYVIMRC<Enter>	
+
+" Shortcut for ~/vim/plugins.vim file
+nmap <Leader>ep :tabedit ~/.vim/plugins.vim<Enter>	
+
+" Shortcut for Vundle Plugins Installation
+nmap <Leader>epi :PluginInstall<Enter>	
+
+" Shortcut for easier acces to snippet files
+nmap <Leader>es :tabedit ~/.vim/snippets/
+
+" Shortcut for highlight removal
+nmap <Leader><space> :nohlsearch<Enter>
+
+" Press jj twice instead of ESC
 inoremap jj <ESC>
 
 " copy and paste
@@ -43,110 +88,135 @@ vmap <C-x> "+c
 vmap <C-v> c<ESC>"+p
 imap <C-v> <ESC>"+pa
 
-" movement between tabs and splits
-map <c-h> <c-w>h
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-tab> <esc>:tabnext<CR>
+" nmap <Leader>dd "_d
 
-set wildmenu 
 
-" Disable backup file( We have GIT POWER ) 
-set nobackup
-set noswapfile
+" ----Mapping for CTags
 
-" Use mouse functionality
-if has('mouse') 
-	set mouse=a 
-endif 
+nmap <Leader>f :tag<space>
 
-""""""""""""""""""""""""""""""""""" 
-    " Text, tab and indent related 
-""""""""""""""""""""""""""""""""""" 
+"-----------Searching------------"
 
-" Use spaces instead of tabs 
-set expandtab 
+set hlsearch				" Highlight when searching
+set incsearch				" Incremental search
 
-" Smarttab option 
-set smarttab 
 
-" 1 tab = 4 spaces 
-set shiftwidth=4 
-set tabstop=4 
+"-----------Tabs Management------------"
 
-" Auto indent and smart indent 
-set autoindent 
-set smartindent 
+" Shortcut for easier movement/closing for tabs
 
-set wrap " Wrap lines 
+" Close the tab
+nmap <Leader>tc :tabc<Enter>    
 
-"""""""""""""""""""""""""""""""""""
-    " Vundle specific config 
-"""""""""""""""""""""""""""""""""""
+" Next tab
+nmap <Leader>tn :tabn<Enter>
 
-set nocp 
-filetype off 
-filetype plugin indent off
+" Previous tab
+nmap <Leader>tp :tabp<Enter>
 
-set rtp+=~/.vim/bundle/Vundle.vim 
+" Switch between tabs
+nmap <C-tab> <esc>:tabn<CR>
 
-call vundle#begin() 
-"List with git sourced plugins
-Plugin 'VundleVim/Vundle.vim' 
-Plugin 'vim-scripts/TagHighlight'
-Plugin 'octol/vim-cpp-enhanced-highlight' 
-Plugin 'mattn/emmet-vim' 
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-call vundle#end() 
+"-----------Split Management------------"
 
-" Restarting following options
-filetype plugin indent on 
-syntax on
+" Split in normal order
+set splitbelow
+set splitright
 
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8     
+" Easier movement between splits
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-H> <C-W><C-H>
+nmap <C-L> <C-W><C-L>
 
-""""""""""""""""""""""""""""""""""
-"   Plugin Settings
-""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""
-" NERDTree 
-""""""""""""""""""
+"-----------Plugins------------"
+
+" Source a sepparate .vim file that contans the list of plugin
+so ~/.vim/plugins.vim
+
+
+"-----------------------Plugins Settings----------------------"
+
+"----NERDTree
+
+" Shortcut for NERDTree activation
+nmap <Leader>1 :NERDTreeToggle<Enter>
+
+" Resolve '-' key conflict with Vinegar
+let NERDTreeHijackNetrw = 0
 
 " Close NERDTree if is the only window left open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" Ctrl+n: shortcut to open NERDTree
-map <C-n> :NERDTreeToggle<CR>
 
 " Default arrows
 let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-""""""""""""""""""""""
-" NERDTree Git Plugin
-""""""""""""""""""""""
+"----ctrlpvim
 
-" Default icons
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
+" Shortcut for searching methods
+nmap <D-R> :CtrlPBufTag<Enter>
+nmap <D-e> :CtrlPMRUFiles<Enter>
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
 
-" Uncomment if error
-" set shell=sh
+"----vim-php-namespaces
+
+" Inserts use statement for the namespace automaticly for you(with ctags)
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>n <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>n :call PhpInsertUse()<CR>
+
+" Inserts a fully qualified name
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>nf <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
+
+"----emmet
+
+let g:user_emmet_leader_key='<C-Z>'
 
 
 
+"-----------Auto-Commands------------"
+
+" Automaticlly source the .vimrc file
+augroup autosourcing
+	autocmd!
+	autocmd BufWritePost .vimrc source %
+augroup END
+
+" Use mouse functionality if available
+if has('mouse') 
+	set mouse=a 
+endif 
+
+"########################### Notes #################################
+" - Press 'gg' to go at the biggining of the file.
+" - Press 'G' to go at the end of the file.
+" - Press 'zz' to center the line on the screen.
+" - In snippets files, press 'ne' to expand a snippet.
+" - Use :redo do redo a change.
+" - Vinegar
+"	- '-' to go to the parrent dir
+"	- '%' to create a file
+"	- 'd' to create a dir
+"	- 'D' to delete a file or a dir
+"	- 'R' to rename a file or a dir
+"	- 'x' to execute a file
+"
+" - Ctags
+"	- eg: ctags -R --exclude=node_modules|vendor
+"
+" - vim-php-namespace
+"	- we will need ctags
+"	- remaped to leader-Previousn

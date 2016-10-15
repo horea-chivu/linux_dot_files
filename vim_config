@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Warning, it will remove your current configurations for Vim!!
+# Bash script for setting up configurations and plugins for Vim.
+
+# You need to have installed the following: Vim, gVim(the gtk version). 
+# If you don't, just run: sudo pt-get install vim vim-gtk
+
+sudo rm -R ~/.vim					# Remove your current configurations,
+sudo rm ~/.vimrc					#   plugins, snippets and so on.
+sudo rm ~/.gtkrc-2.0
+
+mkdir ~/.vim 
+cp -R Vim/colors ~/.vim				# Copy color schemes to vim dir
+cp Vim/.vimrc ~/.vim				# Copy .vimrc to .vim dir
+cp Vim/plugins.vim ~/.vim                       # Copy the list of plugins
+cp -R Vim/snippets ~/.vim/                      # Copy our snippets
+
+ln -s ~/.vim/.vimrc ~/				# Make a link to be visible to vim
+
+# 1. Copy a file in ~ dir to partially resolve white borders problem in gVim
+# 2. Only for atom-dark gVim theme! If you have a diffrent theme, please update
+#       the hexa value of "bg[NORMAL] in .gtkrc-2.0 file.
+# 3. Only tested in: Mint 18
+cp Vim/.gtkrc-2.0 ~/
+
+# Get and set Vundle and all the plugins in the plugins in plugins.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+# On Fedora execute the following:
+
+# sudo ln -s ~/.vim /root/
+# sudo ln -s ~/.vimrc /root/
