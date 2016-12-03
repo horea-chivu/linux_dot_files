@@ -6,3 +6,4 @@ rm ~/.emacs
 cp -R .emacs.d ~/
 cp .emacs ~/
 cd ..
+

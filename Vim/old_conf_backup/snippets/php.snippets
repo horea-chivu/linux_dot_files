@@ -1,0 +1,107 @@
+snippet met
+	public function ${1}(${2}) {
+		${3}
+	}
+
+snippet protmet
+	protected function ${1}(${2}) {
+		${3}
+	}
+
+snippet privmet
+	private function ${1}(${2}) {
+		${3}
+	}
+
+snippet stmet
+	public static function ${1}(${2}) {
+		${3}
+	}
+
+snippet construct
+	public function __construct(${1}) {
+		${2}
+	}
+
+snippet cls
+	class ${1} {
+		${2}
+	}
+
+snippet ccls
+	class ${1} {
+		public function __construct(${2}) {
+			${3}
+		}
+	}
+
+snippet clse
+	class ${1} extends ${2} {
+		${3}
+	}
+
+snippet cclse
+	class ${1} extends ${2} {
+		public function __construct(${3}) {
+			${4}
+		}
+	}
+
+snippet clsi
+	class ${1} implements ${2} {
+		${3}
+	}
+
+snippet cclsi
+	class ${1} implements ${2} {
+		public function __construct(${3}) {
+			${4}
+		}
+	}
+
+
+snippet clsei
+	class ${1} extends ${2} implements ${3} {
+		${4}
+	}
+
+snippet cclsei
+	class ${1} extends ${2} implements ${3} {
+		public functon __contruct(${4}) {
+			${5}
+		}
+	}
+
+snippet if
+	if (${1}) {
+		${2}
+	}
+
+snippet ife
+	if (${1}) {
+		${2}
+	} else {
+		${3}
+	}
+
+snippet for 
+	for (${1};${2};${3}) {
+		${4}
+	}
+
+snippet fore 
+	foreach(${1} in ${2}) {
+		${3}
+	}
+
+snippet arrmap
+	array_map(function (${1}) {
+		${2}
+	}, ${3});
+
+snippet arrfilter
+	array_filter(${1}, function (${2}) {
+		${3}
+	});
+
+

@@ -5,15 +5,18 @@ rm -R Vim/old_conf_backup
  
 # Backup our current vim files in the old_conf_backup directory
 mkdir Vim/old_conf_backup
+
 mv Vim/colors Vim/old_conf_backup 
 mv Vim/snippets Vim/old_conf_backup 
 mv Vim/.vimrc Vim/old_conf_backup 
 mv Vim/plugins.vim Vim/old_conf_backup 
-mv Vim/.gtkrc-2.0 Vim/old_conf_backup 
+mv Vim/needed_files Vim/old_conf_backup 
 
 # Get the new files from ~/.vim
 cp -R ~/.vim/colors Vim/
 cp -R ~/.vim/snippets Vim/
 cp ~/.vim/.vimrc Vim/
 cp ~/.vim/plugins.vim Vim/
-cp ~/.gtkrc-2.0 Vim/
+mkdir Vim/needed_files
+cp ~/.gtkrc-2.0 Vim/needed_files
+cp ~/.eslintrc Vim/needed_files
