@@ -3,6 +3,7 @@
 let mapleader=","			" Set leader key to ,
 set nocompatible              		" be iMproved, required
 set wildmenu 
+set shell=/bin/bash
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf-8
@@ -11,15 +12,10 @@ set encoding=utf-8
 set nobackup
 set noswapfile
 
-set autowriteall                        "Automatically write the file when switching buffers.
-set complete=.,w,b,u 			"Set our desired autocompletion matching.
 set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
-
-set autowriteall                        "Automatically write the file when switching buffers.
-set complete=.,w,b,u 			"Set our desired autocompletion matching.
 
 "-----------Visuals------------"
 
@@ -81,9 +77,6 @@ nmap <Leader>ep :tabedit ~/.vim/plugins.vim<Enter>
 " Shortcut for Vundle Plugins Installation
 nmap <Leader>ei :PluginInstall<Enter>	
 
-" Shortcut for easier acces to snippet files
-nmap <Leader>es :tabedit ~/.vim/snippets/
-
 " Shortcut for highlight removal
 nmap <Leader><space> :nohlsearch<Enter>
 
@@ -117,10 +110,10 @@ set incsearch				" Incremental search
 nmap <Leader>tc :tabc<Enter>    
 
 " Next tab
-nmap <Leader>tn :tabn<Enter>
+nmap <Leader>r :tabn<Enter>
 
 " Previous tab
-nmap <Leader>tp :tabp<Enter>
+nmap <Leader>w :tabp<Enter>
 
 " Switch between tabs
 nmap <C-tab> <esc>:tabn<CR>
@@ -168,7 +161,10 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " Shortcut for searching methods
 nmap <D-R> :CtrlPBufTag<Enter>
 nmap <D-e> :CtrlPMRUFiles<Enter>
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': 'node_modules\|vendor\|DS_Store\|\.git'
+  \ }
 let g:ctrlp_match_window = 'top,order:ttb,min:1,max:30,results:30'
 
 "----vim-php-namespaces
@@ -193,6 +189,12 @@ autocmd FileType php noremap <Leader>nf :call PhpExpandClass()<CR>
 
 let g:user_emmet_leader_key='<C-Z>'
 
+"----ultisnips
+
+let g:UltiSnipsExpandTrigger="<c-d>"
+let g:UltiSnipsJumpBackwardTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-d>"
+
 "----YouCompleteMe
 
 "----vim-airline
@@ -204,6 +206,15 @@ if ! has("gui_running")
 else
     let g:airline_theme='solarized'
 endif
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#close_symbol = '×'
+let g:airline#extensions#tabline#show_close_button = 0
 
 "----syntastic
 set statusline+=%#warningmsg#
@@ -243,6 +254,16 @@ endif
 "	- 'D' to delete a file or a dir
 "	- 'R' to rename a file or a dir
 "	- 'x' to execute a file
+"
+" - Emmet
+"       - <C-z><leader> to trigger the command
+"
+" - UltiSnip
+"       - ctrl-d to expand the snippet
+"       - ctrl-d to move forward
+"       - ctrl-a to move backwards
+"       - php-snippet plugin will provide the snippets(great ones)
+"       - YouCompleteMe will show the snippet completions
 "
 " - Ctags
 "	- eg: ctags -R --exclude=node_modules|vendor

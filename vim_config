@@ -29,7 +29,6 @@ mkdir ~/.vim
 cp -R Vim/colors ~/.vim				# Copy color schemes to vim dir
 cp Vim/.vimrc ~/.vim				# Copy .vimrc to .vim dir
 cp Vim/plugins.vim ~/.vim                       # Copy the list of plugins
-cp -R Vim/snippets ~/.vim/                      # Copy our snippets
 
 ln -s ~/.vim/.vimrc ~/				# Make a link to be visible to vim
 
